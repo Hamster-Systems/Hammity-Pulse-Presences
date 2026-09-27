@@ -3,7 +3,7 @@
   "id": "vscode",
   "name": "Visual Studio Code",
   "type": "app",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Basic Visual Studio Code activity detection.",
   "priority": 120,
   "detection": {
@@ -20,6 +20,26 @@
     "assets": {
       "icon": "icon.png",
       "largeText": "Visual Studio Code"
+    }
+  },
+  "events": {
+    "typing": {
+      "description": "Shows a lightweight typing status without exposing file contents.",
+      "defaultTtlMs": 8000,
+      "activity": {
+        "type": "using",
+        "details": "Typing",
+        "state": "Line {line}"
+      }
+    },
+    "editing": {
+      "description": "Shows a generic editing status.",
+      "defaultTtlMs": 12000,
+      "activity": {
+        "type": "using",
+        "details": "Editing code",
+        "state": "Line {line}"
+      }
     }
   }
 }
