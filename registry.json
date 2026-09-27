@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "presences": [
+    "presences/apps/notepad/metadata.json",
+    "presences/apps/vscode/metadata.json",
+    "presences/games/gta-v/metadata.json",
+    "presences/games/minecraft/metadata.json"
+  ]
+}
