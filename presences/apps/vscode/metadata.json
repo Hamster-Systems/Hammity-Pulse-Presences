@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "vscode",
+  "name": "Visual Studio Code",
+  "type": "app",
+  "version": "1.0.0",
+  "description": "Basic Visual Studio Code activity detection.",
+  "processes": ["Code.exe"],
+  "activity": {
+    "details": "Using Visual Studio Code",
+    "state": "Detected by Hammity Pulse"
+  }
+}
