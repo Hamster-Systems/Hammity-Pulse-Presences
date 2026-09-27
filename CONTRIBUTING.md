@@ -2,19 +2,9 @@
 
 Thanks for helping expand Hammity Pulse support.
 
-The goal is to keep Presence integrations small, readable, safe, and easy to maintain.
+Application-specific support belongs in this public repository. The private Hammity Pulse runtime should remain generic.
 
-## Before contributing
-
-A Presence should:
-
-- Represent a real website, game, or desktop application.
-- Use a unique lowercase ID.
-- Only collect information needed to build the displayed activity.
-- Avoid secrets, credentials, tokens, private files, and unrelated browsing information.
-- Fail gracefully when the target application or page is unavailable.
-
-## Folder structure
+## Presence structure
 
 Choose the appropriate category:
 
@@ -24,17 +14,17 @@ presences/games/<presence-id>/
 presences/apps/<presence-id>/
 ```
 
-A Presence currently contains:
+A basic Presence contains:
 
 ```text
 <presence-id>/
 ├── metadata.json
-└── presence.js
+└── icon.png
 ```
 
-Assets may be added later where required by the runtime.
+Then add the metadata path to `registry.json`.
 
-## metadata.json
+## Metadata
 
 Metadata must validate against `schemas/presence.schema.json`.
 
@@ -43,44 +33,75 @@ Example:
 ```json
 {
   "$schema": "../../../schemas/presence.schema.json",
-  "id": "example",
-  "name": "Example",
+  "id": "example-app",
+  "name": "Example App",
   "type": "app",
   "version": "1.0.0",
   "description": "Example Hammity Pulse Presence.",
-  "entry": "presence.js"
+  "priority": 100,
+  "detection": {
+    "processes": [
+      "example.exe"
+    ]
+  },
+  "activity": {
+    "type": "using",
+    "name": "Example App",
+    "details": "Using Example App",
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Example App"
+    }
+  }
 }
 ```
 
-## Presence logic
+## Priority
 
-Presence scripts should export a single asynchronous function.
+If multiple supported processes are running, the Presence with the higher `priority` is selected first.
 
-```js
-export default async function presence(Hammity) {
-  return {
-    details: "Using Example",
-    state: "Example activity"
-  };
-}
-```
+Use priority to express specificity, not personal importance. A game should generally outrank a generic utility that is commonly left open in the background.
 
-The public Presence API is intentionally limited. Do not depend on Node.js internals or unrestricted native APIs.
+## Assets
+
+Presence artwork must be redistributable.
+
+Do not submit copyrighted logos, game artwork, screenshots, or trademark assets unless the repository is legally allowed to redistribute them.
+
+Neutral original artwork is acceptable.
+
+## Privacy and security
+
+A Presence should only request data needed for Rich Presence.
+
+Do not design Presence logic around:
+
+- credentials or authentication tokens;
+- unrelated browser history;
+- private documents;
+- unrestricted filesystem access;
+- arbitrary command execution.
+
+Dynamic Presences will use controlled Hammity Pulse APIs rather than unrestricted Node.js execution.
 
 ## Pull requests
 
-Keep each pull request focused on one Presence or one related change.
+Keep each pull request focused on one Presence or one related format change.
 
 For new Presences:
 
-- Use a clear title such as `feat: add YouTube presence`.
-- Explain what is detected.
-- Mention how you tested it.
-- Include screenshots where useful.
-- Do not include copyrighted assets unless you have permission to redistribute them.
+- use a clear title such as `feat: add Example App presence`;
+- explain exactly how it is detected;
+- mention how you tested it;
+- include screenshots where useful;
+- update `registry.json`;
+- ensure metadata validates against the current schema;
+- ensure included assets may legally be redistributed.
 
 By submitting a contribution, you agree that your contribution is licensed under the Mozilla Public License 2.0.
 
-## Changes to the format
+## Format changes
 
-Hammity Pulse is still early in development. If you want to change the Presence format itself, open an issue first so the runtime and public schema can stay compatible.
+Hammity Pulse is still early in development. Open an issue before making a major format change so the public schema and private runtime remain compatible.
