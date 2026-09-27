@@ -12,6 +12,7 @@
     "presences/websites/spotify/metadata.json",
     "presences/games/roblox/metadata.json",
     "presences/apps/roblox-studio/metadata.json",
-    "presences/websites/tubecraft-smp/metadata.json"
+    "presences/websites/tubecraft-smp/metadata.json",
+    "presences/websites/github/metadata.json"
   ]
 }

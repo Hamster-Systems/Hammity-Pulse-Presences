@@ -1,0 +1,520 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "github",
+  "name": "GitHub",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Rich GitHub activity for repositories, code, issues, pull requests, profiles, Actions and more.",
+  "priority": 200,
+  "website": "https://github.com",
+  "detection": {
+    "domains": [
+      "github.com",
+      "gist.github.com"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "title"
+        }
+      ],
+      "stripSuffixes": [
+        " · GitHub",
+        " - GitHub"
+      ]
+    },
+    "author": {
+      "selectors": [
+        {
+          "selector": "span.p-nickname"
+        },
+        {
+          "selector": "meta[name=\"octolytics-dimension-user_login\"]",
+          "attribute": "content"
+        }
+      ],
+      "pathSegment": 0
+    },
+    "authorImage": {
+      "selectors": [
+        {
+          "selector": "img.avatar-user",
+          "attribute": "src"
+        },
+        {
+          "selector": "meta[property=\"og:image\"]",
+          "attribute": "content"
+        }
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "meta[name=\"twitter:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "activity": {
+    "type": "using",
+    "name": "GitHub",
+    "details": "Browsing GitHub",
+    "state": "{browser.pageTitle}",
+    "showElapsed": true,
+    "timestampMode": "elapsed"
+  },
+  "contexts": [
+    {
+      "id": "gist-home",
+      "description": "Creating a GitHub Gist",
+      "when": {
+        "browserHostnameEquals": "gist.github.com",
+        "browserPathnameEquals": "/"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Creating a GitHub Gist",
+        "state": "gist.github.com",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "gist-browse",
+      "description": "Browsing a GitHub Gist",
+      "when": {
+        "browserHostnameEquals": "gist.github.com",
+        "browserPathnameRegex": "^/[^/]+/[^/]+"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing a GitHub Gist",
+        "state": "By {browser.path0}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "search",
+      "description": "Searching GitHub",
+      "when": {
+        "browserPathnameIncludes": "/search"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Searching GitHub",
+        "state": "{browser.query.q}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "pull-request",
+      "description": "Viewing an individual pull request",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/pull/[0-9]+"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing pull request #{browser.path3}",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "pull-requests",
+      "description": "Browsing repository pull requests",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/pulls/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing pull requests",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "issue",
+      "description": "Viewing an individual issue",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/issues/[0-9]+"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing issue #{browser.path3}",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "issues",
+      "description": "Browsing repository issues",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/issues/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing issues",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "discussion",
+      "description": "Viewing a repository discussion",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/discussions/[0-9]+"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing discussion #{browser.path3}",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "discussions",
+      "description": "Browsing repository discussions",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/discussions/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing discussions",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "actions",
+      "description": "Viewing repository Actions",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/actions(?:/.*)?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing GitHub Actions",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "commits",
+      "description": "Viewing repository commits",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/commits(?:/.*)?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing commit history",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "branches",
+      "description": "Viewing repository branches",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/branches/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing branches",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "tags",
+      "description": "Viewing repository tags",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/tags/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing tags",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "releases",
+      "description": "Viewing repository releases",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/releases(?:/.*)?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing releases",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "repo-file",
+      "description": "Viewing a file in a repository",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/blob/"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing {browser.path0}/{browser.path1}",
+        "state": "Viewing a file",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "repo-folder",
+      "description": "Browsing a repository folder",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/tree/"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing {browser.path0}/{browser.path1}",
+        "state": "Viewing a folder",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "repo",
+      "description": "Browsing a repository",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/[^/]+/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing repository",
+        "state": "{browser.path0}/{browser.path1}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "org-members",
+      "description": "Viewing an organisation section",
+      "when": {
+        "browserPathnameRegex": "^/orgs/[^/]+/"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.path1}'s {browser.path2}",
+        "state": "GitHub organisation",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "profile-tab",
+      "description": "Viewing a GitHub profile tab",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "repositories"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.path0}'s repositories",
+        "state": "GitHub profile",
+        "assets": {
+          "largeImage": "{browser.authorImage}",
+          "largeText": "{browser.path0}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "profile",
+      "description": "Viewing a GitHub user or organisation profile",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.path0}'s profile",
+        "state": "GitHub",
+        "assets": {
+          "largeImage": "{browser.authorImage}",
+          "largeText": "{browser.path0}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "notifications",
+      "description": "Viewing notifications",
+      "when": {
+        "browserPathnameIncludes": "/notifications"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing notifications",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "settings",
+      "description": "Viewing settings",
+      "when": {
+        "browserPathnameIncludes": "/settings"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing settings",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "codespaces",
+      "description": "Viewing Codespaces",
+      "when": {
+        "browserPathnameIncludes": "/codespaces"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing Codespaces",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "marketplace",
+      "description": "Browsing Marketplace",
+      "when": {
+        "browserPathnameIncludes": "/marketplace"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing Marketplace",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "topics",
+      "description": "Browsing topics",
+      "when": {
+        "browserPathnameIncludes": "/topics"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing topics",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "trending",
+      "description": "Browsing trending",
+      "when": {
+        "browserPathnameIncludes": "/trending"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing trending repositories",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "home",
+      "description": "Viewing GitHub home",
+      "when": {
+        "browserPathnameEquals": "/"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing the home page",
+        "state": "GitHub",
+        "assets": {},
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    }
+  ]
+}

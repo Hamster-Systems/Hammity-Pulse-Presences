@@ -371,6 +371,11 @@
                     "boolean"
                   ]
                 }
+              },
+              "browserHostnameEquals": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
               }
             },
             "anyOf": [
@@ -427,6 +432,11 @@
               {
                 "required": [
                   "browserQueryParamEquals"
+                ]
+              },
+              {
+                "required": [
+                  "browserHostnameEquals"
                 ]
               }
             ]
