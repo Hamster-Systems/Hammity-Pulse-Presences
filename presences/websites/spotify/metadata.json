@@ -1,0 +1,113 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "spotify",
+  "name": "Spotify",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Spotify Web Player listening activity.",
+  "priority": 180,
+  "detection": {
+    "domains": [
+      "open.spotify.com"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "[data-testid=\"context-item-info-title\"]"
+        },
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        }
+      ],
+      "stripSuffixes": [
+        " | Spotify"
+      ]
+    },
+    "author": {
+      "selectors": [
+        {
+          "selector": "[data-testid=\"context-item-info-subtitles\"]"
+        },
+        {
+          "selector": "[data-testid=\"context-item-info-artist\"]"
+        }
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "[data-testid=\"cover-art-image\"] img",
+              "attribute": "src"
+            },
+            {
+              "selector": "img[data-testid=\"cover-art-image\"]",
+              "attribute": "src"
+            },
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    },
+    "mediaSelector": "audio"
+  },
+  "activity": {
+    "type": "listening",
+    "name": "Spotify",
+    "details": "Browsing Spotify",
+    "state": "Hammity Pulse Browser",
+    "showElapsed": false,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Spotify"
+    },
+    "timestampMode": "none"
+  },
+  "contexts": [
+    {
+      "id": "track-playing",
+      "description": "Listening to a track in Spotify Web Player.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "playing"
+      },
+      "activity": {
+        "type": "listening",
+        "details": "Listening to {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "media",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "track-paused",
+      "description": "Paused on a track in Spotify Web Player.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "listening",
+        "details": "Paused {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "none",
+        "showElapsed": false
+      }
+    }
+  ]
+}

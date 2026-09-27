@@ -1,0 +1,114 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "twitch",
+  "name": "Twitch",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Twitch stream and channel activity.",
+  "priority": 170,
+  "detection": {
+    "domains": [
+      "twitch.tv"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "h2[data-a-target=\"stream-title\"]"
+        },
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "meta[name=\"twitter:title\"]",
+          "attribute": "content"
+        }
+      ],
+      "stripSuffixes": [
+        " - Twitch"
+      ]
+    },
+    "author": {
+      "selectors": [
+        {
+          "selector": "a[data-a-target=\"user-channel-header-item\"]"
+        },
+        {
+          "selector": "meta[property=\"og:site_name\"]",
+          "attribute": "content"
+        }
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "meta[name=\"twitter:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    },
+    "mediaSelector": "video"
+  },
+  "activity": {
+    "type": "watching",
+    "name": "Twitch",
+    "details": "Browsing Twitch",
+    "state": "Hammity Pulse Browser",
+    "showElapsed": false,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Twitch"
+    },
+    "timestampMode": "none"
+  },
+  "contexts": [
+    {
+      "id": "stream-playing",
+      "description": "Watching a Twitch stream.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "playing"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Watching {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "media",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "stream-paused",
+      "description": "Paused on a Twitch stream.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Paused {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "none",
+        "showElapsed": false
+      }
+    }
+  ]
+}
