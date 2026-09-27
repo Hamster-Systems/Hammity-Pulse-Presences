@@ -5,6 +5,10 @@
     "presences/apps/vscode/metadata.json",
     "presences/games/gta-v/metadata.json",
     "presences/games/minecraft/metadata.json",
-    "presences/websites/youtube/metadata.json"
+    "presences/websites/youtube/metadata.json",
+    "presences/websites/twitch/metadata.json",
+    "presences/websites/youtube-music/metadata.json",
+    "presences/websites/netflix/metadata.json",
+    "presences/websites/spotify/metadata.json"
   ]
 }
