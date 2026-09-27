@@ -1,0 +1,38 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "roblox-studio",
+  "name": "Roblox Studio",
+  "type": "app",
+  "version": "1.0.0",
+  "description": "Roblox Studio development activity.",
+  "priority": 255,
+  "detection": {
+    "processes": [
+      "RobloxStudioBeta.exe"
+    ],
+    "captureWindowTitle": true
+  },
+  "activity": {
+    "type": "using",
+    "name": "Roblox Studio",
+    "details": "Developing in Roblox Studio",
+    "state": "Project open",
+    "showElapsed": true
+  },
+  "contexts": [
+    {
+      "id": "project-window",
+      "description": "Shows the active Roblox Studio project/window title.",
+      "when": {
+        "windowTitleRegex": ".+"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Developing in Roblox Studio",
+        "state": "{window.title}",
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    }
+  ]
+}
