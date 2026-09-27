@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "minecraft",
+  "name": "Minecraft",
+  "type": "game",
+  "version": "1.0.0",
+  "description": "Basic Minecraft activity detection. Native mods can provide richer activity.",
+  "processes": ["javaw.exe", "java.exe"],
+  "activity": {
+    "details": "Playing Minecraft",
+    "state": "Detected by Hammity Pulse"
+  }
+}
