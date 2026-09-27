@@ -1,0 +1,112 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "youtube-music",
+  "name": "YouTube Music",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "YouTube Music listening activity.",
+  "priority": 180,
+  "detection": {
+    "domains": [
+      "music.youtube.com"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "ytmusic-player-bar .title"
+        },
+        {
+          "selector": "ytmusic-player-bar yt-formatted-string.title"
+        },
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        }
+      ],
+      "stripSuffixes": [
+        " - YouTube Music"
+      ]
+    },
+    "author": {
+      "selectors": [
+        {
+          "selector": "ytmusic-player-bar .byline"
+        },
+        {
+          "selector": "ytmusic-player-bar yt-formatted-string.byline"
+        }
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "ytmusic-player-bar img",
+              "attribute": "src"
+            },
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    },
+    "mediaSelector": "video, audio"
+  },
+  "activity": {
+    "type": "listening",
+    "name": "YouTube Music",
+    "details": "Browsing YouTube Music",
+    "state": "Hammity Pulse Browser",
+    "showElapsed": false,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "YouTube Music"
+    },
+    "timestampMode": "none"
+  },
+  "contexts": [
+    {
+      "id": "track-playing",
+      "description": "Listening to a track on YouTube Music.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "playing"
+      },
+      "activity": {
+        "type": "listening",
+        "details": "Listening to {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "media",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "track-paused",
+      "description": "Paused on a track in YouTube Music.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "listening",
+        "details": "Paused {browser.pageTitle}",
+        "state": "{browser.author}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "none",
+        "showElapsed": false
+      }
+    }
+  ]
+}
