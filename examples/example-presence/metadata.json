@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/presence.schema.json",
+  "id": "example",
+  "name": "Example",
+  "type": "app",
+  "version": "1.0.0",
+  "description": "Example Hammity Pulse Presence.",
+  "entry": "presence.js",
+  "processes": [
+    "example.exe"
+  ]
+}
