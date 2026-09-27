@@ -3,7 +3,7 @@
   "id": "youtube",
   "name": "YouTube",
   "type": "website",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Rich YouTube browser activity with video, channel and playback context.",
   "priority": 160,
   "detection": {
@@ -144,5 +144,115 @@
         "showElapsed": false
       }
     }
-  ]
+  ],
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "ytd-watch-metadata h1 yt-formatted-string"
+        },
+        {
+          "selector": "h1.ytd-watch-metadata yt-formatted-string"
+        },
+        {
+          "selector": "meta[itemprop=\"name\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "meta[name=\"twitter:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "h1"
+        }
+      ],
+      "stripSuffixes": [
+        " - YouTube"
+      ]
+    },
+    "author": {
+      "selectors": [
+        {
+          "selector": "ytd-watch-metadata ytd-channel-name a"
+        },
+        {
+          "selector": "#owner ytd-channel-name a"
+        },
+        {
+          "selector": "#channel-name a"
+        },
+        {
+          "selector": "meta[itemprop=\"author\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "meta[name=\"author\"]",
+          "attribute": "content"
+        }
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "whenPathnameEquals": "/watch",
+          "queryParam": "v",
+          "template": "https://i.ytimg.com/vi/{value}/hqdefault.jpg"
+        },
+        {
+          "whenPathnameRegex": "^/(?:@[^/]+|channel/|c/|user/)",
+          "selectors": [
+            {
+              "selector": "ytd-page-header-renderer #avatar img",
+              "attribute": "src"
+            },
+            {
+              "selector": "ytd-c4-tabbed-header-renderer #avatar img",
+              "attribute": "src"
+            },
+            {
+              "selector": "yt-page-header-renderer #avatar img",
+              "attribute": "src"
+            },
+            {
+              "selector": "#channel-header-container #avatar img",
+              "attribute": "src"
+            }
+          ]
+        },
+        {
+          "selectors": [
+            {
+              "selector": "meta[itemprop=\"thumbnailUrl\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "link[itemprop=\"thumbnailUrl\"]",
+              "attribute": "href"
+            },
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "meta[name=\"twitter:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "link[rel=\"image_src\"]",
+              "attribute": "href"
+            }
+          ]
+        }
+      ]
+    },
+    "mediaSelector": "video, audio",
+    "events": [
+      "yt-navigate-finish",
+      "yt-page-data-updated"
+    ]
+  }
 }
