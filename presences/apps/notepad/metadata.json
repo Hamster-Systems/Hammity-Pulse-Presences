@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "notepad",
+  "name": "Notepad",
+  "type": "app",
+  "version": "1.0.0",
+  "description": "Basic Notepad activity detection.",
+  "processes": ["notepad.exe"],
+  "activity": {
+    "details": "Using Notepad",
+    "state": "Detected by Hammity Pulse"
+  }
+}
