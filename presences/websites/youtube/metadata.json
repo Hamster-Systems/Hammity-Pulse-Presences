@@ -3,8 +3,8 @@
   "id": "youtube",
   "name": "YouTube",
   "type": "website",
-  "version": "1.0.0",
-  "description": "Basic YouTube browser activity.",
+  "version": "1.1.0",
+  "description": "Rich YouTube browser activity with video, channel and playback context.",
   "priority": 160,
   "detection": {
     "domains": [
@@ -16,31 +16,119 @@
     "name": "YouTube",
     "details": "Browsing YouTube",
     "state": "Hammity Pulse Browser",
-    "showElapsed": true
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "YouTube"
+    }
   },
   "contexts": [
     {
-      "id": "watching-video",
-      "description": "Detects YouTube watch pages using only the active pathname and optional page title.",
+      "id": "video-playing",
+      "description": "Shows the current YouTube video thumbnail and playing state.",
+      "when": {
+        "browserPathnameEquals": "/watch",
+        "browserMediaStateEquals": "playing"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Watching a video",
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}",
+          "smallImage": "play.png",
+          "smallText": "Playing"
+        }
+      }
+    },
+    {
+      "id": "video-paused",
+      "description": "Shows the current YouTube video thumbnail and paused state.",
+      "when": {
+        "browserPathnameEquals": "/watch",
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Video paused",
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}",
+          "smallImage": "pause.png",
+          "smallText": "Paused"
+        }
+      }
+    },
+    {
+      "id": "watch-page",
+      "description": "Fallback for a YouTube watch page before media state is available.",
       "when": {
         "browserPathnameEquals": "/watch"
       },
       "activity": {
         "type": "watching",
         "details": "Watching a video",
-        "state": "{browser.title}"
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        }
       }
     },
     {
-      "id": "shorts",
-      "description": "Detects YouTube Shorts pages.",
+      "id": "channel",
+      "description": "Shows a YouTube channel page using its page image when available.",
       "when": {
-        "browserPathnameRegex": "^/shorts/"
+        "browserPathnameRegex": "^/(?:@[^/]+|channel/|c/|user/)"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Viewing a channel",
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        }
+      }
+    },
+    {
+      "id": "shorts-playing",
+      "description": "Shows YouTube Shorts playback.",
+      "when": {
+        "browserPathnameRegex": "^/shorts/",
+        "browserMediaStateEquals": "playing"
       },
       "activity": {
         "type": "watching",
         "details": "Watching YouTube Shorts",
-        "state": "{browser.title}"
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}",
+          "smallImage": "play.png",
+          "smallText": "Playing"
+        }
+      }
+    },
+    {
+      "id": "shorts-paused",
+      "description": "Shows a paused YouTube Short.",
+      "when": {
+        "browserPathnameRegex": "^/shorts/",
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Short paused",
+        "state": "{browser.pageTitle}",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}",
+          "smallImage": "pause.png",
+          "smallText": "Paused"
+        }
       }
     }
   ]
