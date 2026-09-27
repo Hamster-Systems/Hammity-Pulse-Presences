@@ -1,0 +1,60 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "roblox",
+  "name": "Roblox",
+  "type": "game",
+  "version": "1.0.0",
+  "description": "Rich Roblox game activity using local Roblox client activity data.",
+  "priority": 260,
+  "detection": {
+    "processes": [
+      "RobloxPlayerBeta.exe"
+    ]
+  },
+  "activity": {
+    "type": "playing",
+    "name": "Roblox",
+    "details": "Playing Roblox",
+    "state": "Starting an experience",
+    "showElapsed": true
+  },
+  "contexts": [
+    {
+      "id": "experience-rich",
+      "description": "Shows the current Roblox experience name, creator and icon.",
+      "when": {
+        "dataEquals": {
+          "roblox.inGame": true,
+          "roblox.metadataReady": true
+        }
+      },
+      "activity": {
+        "type": "playing",
+        "details": "Playing {roblox.gameName}",
+        "state": "By {roblox.creatorName}",
+        "assets": {
+          "largeImage": "{roblox.gameIcon}",
+          "largeText": "{roblox.gameName}"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "experience",
+      "description": "Fallback while Roblox experience metadata is loading.",
+      "when": {
+        "dataEquals": {
+          "roblox.inGame": true
+        }
+      },
+      "activity": {
+        "type": "playing",
+        "details": "Playing a Roblox experience",
+        "state": "Roblox",
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    }
+  ]
+}
