@@ -3,8 +3,8 @@
   "id": "twitch",
   "name": "Twitch",
   "type": "website",
-  "version": "1.0.0",
-  "description": "Twitch stream and channel activity.",
+  "version": "1.1.0",
+  "description": "Rich Twitch stream and creator activity.",
   "priority": 170,
   "detection": {
     "domains": [
@@ -36,10 +36,13 @@
           "selector": "a[data-a-target=\"user-channel-header-item\"]"
         },
         {
-          "selector": "meta[property=\"og:site_name\"]",
-          "attribute": "content"
+          "selector": "a[data-a-target=\"channel-name\"]"
+        },
+        {
+          "selector": "h1[data-a-target=\"channel-header-title\"]"
         }
-      ]
+      ],
+      "pathSegment": 0
     },
     "image": {
       "rules": [
@@ -57,7 +60,27 @@
         }
       ]
     },
-    "mediaSelector": "video"
+    "mediaSelector": "video",
+    "authorImage": {
+      "selectors": [
+        {
+          "selector": "img[data-a-target=\"profile-image\"]",
+          "attribute": "src"
+        },
+        {
+          "selector": "img[data-a-target=\"user-avatar\"]",
+          "attribute": "src"
+        },
+        {
+          "selector": "[data-test-selector=\"channel-header-avatar\"] img",
+          "attribute": "src"
+        },
+        {
+          "selector": "[data-a-target=\"channel-header\"] img",
+          "attribute": "src"
+        }
+      ]
+    }
   },
   "activity": {
     "type": "watching",
@@ -84,8 +107,10 @@
         "details": "Watching {browser.pageTitle}",
         "state": "{browser.author}",
         "assets": {
-          "largeImage": "{browser.pageImage}",
-          "largeText": "{browser.pageTitle}"
+          "largeImage": "{browser.authorImage}",
+          "largeText": "{browser.author}",
+          "smallImage": "icon.png",
+          "smallText": "Twitch"
         },
         "timestampMode": "media",
         "showElapsed": true
@@ -103,8 +128,30 @@
         "details": "Paused {browser.pageTitle}",
         "state": "{browser.author}",
         "assets": {
-          "largeImage": "{browser.pageImage}",
-          "largeText": "{browser.pageTitle}"
+          "largeImage": "{browser.authorImage}",
+          "largeText": "{browser.author}",
+          "smallImage": "icon.png",
+          "smallText": "Twitch"
+        },
+        "timestampMode": "none",
+        "showElapsed": false
+      }
+    },
+    {
+      "id": "channel",
+      "description": "Viewing a Twitch creator channel.",
+      "when": {
+        "browserPathnameRegex": "^/[^/]+/?$"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Viewing {browser.author}",
+        "state": "Twitch channel",
+        "assets": {
+          "largeImage": "{browser.authorImage}",
+          "largeText": "{browser.author}",
+          "smallImage": "icon.png",
+          "smallText": "Twitch"
         },
         "timestampMode": "none",
         "showElapsed": false
