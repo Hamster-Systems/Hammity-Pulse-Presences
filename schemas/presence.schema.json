@@ -83,6 +83,9 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "captureWindowTitle": {
+          "type": "boolean"
         }
       },
       "anyOf": [
@@ -333,6 +336,18 @@
               },
               "browserHasMedia": {
                 "type": "boolean"
+              },
+              "dataEquals": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                }
               }
             },
             "anyOf": [
@@ -379,6 +394,11 @@
               {
                 "required": [
                   "browserHasMedia"
+                ]
+              },
+              {
+                "required": [
+                  "dataEquals"
                 ]
               }
             ]
