@@ -3,11 +3,24 @@
   "id": "minecraft",
   "name": "Minecraft",
   "type": "game",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic Minecraft activity detection. Native mods can provide richer activity.",
-  "processes": ["javaw.exe", "java.exe"],
+  "priority": 190,
+  "detection": {
+    "processes": [
+      "javaw.exe",
+      "java.exe"
+    ]
+  },
   "activity": {
+    "type": "playing",
+    "name": "Minecraft",
     "details": "Playing Minecraft",
-    "state": "Detected by Hammity Pulse"
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Minecraft"
+    }
   }
 }
