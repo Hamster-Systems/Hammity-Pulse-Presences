@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "gta-v",
+  "name": "Grand Theft Auto V",
+  "type": "game",
+  "version": "1.0.0",
+  "description": "Basic Grand Theft Auto V activity detection.",
+  "processes": ["GTA5.exe", "GTA5_Enhanced.exe"],
+  "activity": {
+    "details": "Playing Grand Theft Auto V",
+    "state": "Detected by Hammity Pulse"
+  }
+}
