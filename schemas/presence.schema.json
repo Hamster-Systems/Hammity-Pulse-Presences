@@ -10,13 +10,14 @@
     "name",
     "type",
     "version",
-    "description",
-    "entry"
+    "description"
+  ],
+  "anyOf": [
+    { "required": ["activity"] },
+    { "required": ["entry"] }
   ],
   "properties": {
-    "$schema": {
-      "type": "string"
-    },
+    "$schema": { "type": "string" },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -28,11 +29,7 @@
     },
     "type": {
       "type": "string",
-      "enum": [
-        "website",
-        "game",
-        "app"
-      ]
+      "enum": ["website", "game", "app"]
     },
     "version": {
       "type": "string",
@@ -47,11 +44,10 @@
       "type": "string",
       "pattern": "^[^/\\\\]+\\.(?:js|mjs)$"
     },
-    "website": {
-      "type": "string"
-    },
+    "website": { "type": "string" },
     "processes": {
       "type": "array",
+      "minItems": 1,
       "uniqueItems": true,
       "items": {
         "type": "string",
@@ -60,10 +56,27 @@
     },
     "domains": {
       "type": "array",
+      "minItems": 1,
       "uniqueItems": true,
       "items": {
         "type": "string",
         "minLength": 1
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "details": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "state": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
       }
     }
   }
