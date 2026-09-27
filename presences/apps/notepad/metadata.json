@@ -3,11 +3,23 @@
   "id": "notepad",
   "name": "Notepad",
   "type": "app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic Notepad activity detection.",
-  "processes": ["notepad.exe"],
+  "priority": 100,
+  "detection": {
+    "processes": [
+      "notepad.exe"
+    ]
+  },
   "activity": {
+    "type": "using",
+    "name": "Notepad",
     "details": "Using Notepad",
-    "state": "Detected by Hammity Pulse"
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Notepad"
+    }
   }
 }
