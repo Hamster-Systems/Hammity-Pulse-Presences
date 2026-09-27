@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "youtube",
+  "name": "YouTube",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Basic YouTube browser activity.",
+  "priority": 160,
+  "detection": {
+    "domains": [
+      "youtube.com"
+    ]
+  },
+  "activity": {
+    "type": "watching",
+    "name": "YouTube",
+    "details": "Browsing YouTube",
+    "state": "Hammity Pulse Browser",
+    "showElapsed": true
+  },
+  "contexts": [
+    {
+      "id": "watching-video",
+      "description": "Detects YouTube watch pages using only the active pathname and optional page title.",
+      "when": {
+        "browserPathnameEquals": "/watch"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Watching a video",
+        "state": "{browser.title}"
+      }
+    },
+    {
+      "id": "shorts",
+      "description": "Detects YouTube Shorts pages.",
+      "when": {
+        "browserPathnameRegex": "^/shorts/"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Watching YouTube Shorts",
+        "state": "{browser.title}"
+      }
+    }
+  ]
+}
