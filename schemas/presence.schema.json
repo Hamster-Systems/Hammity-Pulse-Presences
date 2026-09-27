@@ -15,7 +15,9 @@
     "activity"
   ],
   "properties": {
-    "$schema": { "type": "string" },
+    "$schema": {
+      "type": "string"
+    },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -27,7 +29,11 @@
     },
     "type": {
       "type": "string",
-      "enum": ["website", "game", "app"]
+      "enum": [
+        "website",
+        "game",
+        "app"
+      ]
     },
     "version": {
       "type": "string",
@@ -44,7 +50,9 @@
       "maximum": 1000,
       "default": 100
     },
-    "website": { "type": "string" },
+    "website": {
+      "type": "string"
+    },
     "detection": {
       "type": "object",
       "additionalProperties": false,
@@ -78,9 +86,21 @@
         }
       },
       "anyOf": [
-        { "required": ["processes"] },
-        { "required": ["windowTitles"] },
-        { "required": ["domains"] }
+        {
+          "required": [
+            "processes"
+          ]
+        },
+        {
+          "required": [
+            "windowTitles"
+          ]
+        },
+        {
+          "required": [
+            "domains"
+          ]
+        }
       ]
     },
     "events": {
@@ -88,7 +108,9 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["activity"],
+        "required": [
+          "activity"
+        ],
         "properties": {
           "description": {
             "type": "string",
@@ -105,7 +127,12 @@
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["playing", "watching", "listening", "using"]
+                "enum": [
+                  "playing",
+                  "watching",
+                  "listening",
+                  "using"
+                ]
               },
               "name": {
                 "type": "string",
@@ -140,11 +167,18 @@
     "activity": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["playing", "watching", "listening", "using"]
+          "enum": [
+            "playing",
+            "watching",
+            "listening",
+            "using"
+          ]
         },
         "name": {
           "type": "string",
@@ -197,7 +231,10 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["label", "url"],
+            "required": [
+              "label",
+              "url"
+            ],
             "properties": {
               "label": {
                 "type": "string",
@@ -207,6 +244,106 @@
               "url": {
                 "type": "string",
                 "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    },
+    "contexts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "when",
+          "activity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "when": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "windowTitleEquals": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "windowTitleIncludes": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "windowTitleRegex": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "windowTitleEquals"
+                ]
+              },
+              {
+                "required": [
+                  "windowTitleIncludes"
+                ]
+              },
+              {
+                "required": [
+                  "windowTitleRegex"
+                ]
+              }
+            ]
+          },
+          "activity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "playing",
+                  "watching",
+                  "listening",
+                  "using"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "details": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "state": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "showElapsed": {
+                "type": "boolean"
+              },
+              "assets": {
+                "type": "object"
+              },
+              "buttons": {
+                "type": "array",
+                "maxItems": 2
               }
             }
           }
