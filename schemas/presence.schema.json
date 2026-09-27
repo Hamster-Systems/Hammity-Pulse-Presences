@@ -360,6 +360,17 @@
                     "null"
                   ]
                 }
+              },
+              "browserQueryParamEquals": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
               }
             },
             "anyOf": [
@@ -411,6 +422,11 @@
               {
                 "required": [
                   "dataEquals"
+                ]
+              },
+              {
+                "required": [
+                  "browserQueryParamEquals"
                 ]
               }
             ]
