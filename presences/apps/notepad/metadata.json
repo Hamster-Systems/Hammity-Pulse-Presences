@@ -3,7 +3,7 @@
   "id": "notepad",
   "name": "Notepad",
   "type": "app",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Basic Notepad activity detection.",
   "priority": 100,
   "detection": {
@@ -21,5 +21,31 @@
       "icon": "icon.png",
       "largeText": "Notepad"
     }
-  }
+  },
+  "contexts": [
+    {
+      "id": "new-document",
+      "description": "Detects an unsaved new Notepad document without exposing document contents.",
+      "when": {
+        "windowTitleRegex": "^Untitled(?:\\s*-\\s*Notepad)?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Working on a new text document",
+        "state": "Notepad"
+      }
+    },
+    {
+      "id": "text-document",
+      "description": "Generic editing state for a named Notepad document without exposing its filename.",
+      "when": {
+        "windowTitleRegex": ".+\\s*-\\s*Notepad$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Editing a text document",
+        "state": "Notepad"
+      }
+    }
+  ]
 }
