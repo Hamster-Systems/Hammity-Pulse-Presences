@@ -1,12 +1,25 @@
 {
   "$schema": "../../schemas/presence.schema.json",
-  "id": "example",
-  "name": "Example",
+  "id": "example-app",
+  "name": "Example App",
   "type": "app",
   "version": "1.0.0",
   "description": "Example Hammity Pulse Presence.",
-  "entry": "presence.js",
-  "processes": [
-    "example.exe"
-  ]
+  "priority": 100,
+  "detection": {
+    "processes": [
+      "example.exe"
+    ]
+  },
+  "activity": {
+    "type": "using",
+    "name": "Example App",
+    "details": "Using Example App",
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Example App"
+    }
+  }
 }
