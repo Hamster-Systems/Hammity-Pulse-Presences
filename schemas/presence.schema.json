@@ -287,6 +287,26 @@
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 256
+              },
+              "browserPathnameEquals": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024
+              },
+              "browserPathnameIncludes": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024
+              },
+              "browserPathnameRegex": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "browserTitleIncludes": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
               }
             },
             "anyOf": [
@@ -303,6 +323,26 @@
               {
                 "required": [
                   "windowTitleRegex"
+                ]
+              },
+              {
+                "required": [
+                  "browserPathnameEquals"
+                ]
+              },
+              {
+                "required": [
+                  "browserPathnameIncludes"
+                ]
+              },
+              {
+                "required": [
+                  "browserPathnameRegex"
+                ]
+              },
+              {
+                "required": [
+                  "browserTitleIncludes"
                 ]
               }
             ]
