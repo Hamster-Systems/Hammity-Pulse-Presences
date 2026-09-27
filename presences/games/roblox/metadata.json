@@ -8,7 +8,8 @@
   "priority": 260,
   "detection": {
     "processes": [
-      "RobloxPlayerBeta.exe"
+      "RobloxPlayerBeta.exe",
+      "RobloxPlayerBeta"
     ],
     "dataEquals": {
       "roblox.inGame": true
