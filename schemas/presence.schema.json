@@ -158,6 +158,14 @@
               "buttons": {
                 "type": "array",
                 "maxItems": 2
+              },
+              "timestampMode": {
+                "type": "string",
+                "enum": [
+                  "elapsed",
+                  "media",
+                  "none"
+                ]
               }
             }
           }
@@ -247,6 +255,14 @@
               }
             }
           }
+        },
+        "timestampMode": {
+          "type": "string",
+          "enum": [
+            "elapsed",
+            "media",
+            "none"
+          ]
         }
       }
     },
@@ -404,6 +420,14 @@
               "buttons": {
                 "type": "array",
                 "maxItems": 2
+              },
+              "timestampMode": {
+                "type": "string",
+                "enum": [
+                  "elapsed",
+                  "media",
+                  "none"
+                ]
               }
             }
           }
