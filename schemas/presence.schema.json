@@ -83,6 +83,60 @@
         { "required": ["domains"] }
       ]
     },
+    "events": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["activity"],
+        "properties": {
+          "description": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "defaultTtlMs": {
+            "type": "integer",
+            "minimum": 1000,
+            "maximum": 60000
+          },
+          "activity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["playing", "watching", "listening", "using"]
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "details": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "state": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "showElapsed": {
+                "type": "boolean"
+              },
+              "assets": {
+                "type": "object"
+              },
+              "buttons": {
+                "type": "array",
+                "maxItems": 2
+              }
+            }
+          }
+        }
+      }
+    },
     "activity": {
       "type": "object",
       "additionalProperties": false,
