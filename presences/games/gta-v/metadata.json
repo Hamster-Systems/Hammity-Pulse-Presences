@@ -3,11 +3,24 @@
   "id": "gta-v",
   "name": "Grand Theft Auto V",
   "type": "game",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic Grand Theft Auto V activity detection.",
-  "processes": ["GTA5.exe", "GTA5_Enhanced.exe"],
+  "priority": 200,
+  "detection": {
+    "processes": [
+      "GTA5.exe",
+      "GTA5_Enhanced.exe"
+    ]
+  },
   "activity": {
+    "type": "playing",
+    "name": "Grand Theft Auto V",
     "details": "Playing Grand Theft Auto V",
-    "state": "Detected by Hammity Pulse"
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Grand Theft Auto V"
+    }
   }
 }
