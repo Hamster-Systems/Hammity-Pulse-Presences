@@ -3,11 +3,23 @@
   "id": "vscode",
   "name": "Visual Studio Code",
   "type": "app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic Visual Studio Code activity detection.",
-  "processes": ["Code.exe"],
+  "priority": 120,
+  "detection": {
+    "processes": [
+      "Code.exe"
+    ]
+  },
   "activity": {
+    "type": "using",
+    "name": "Visual Studio Code",
     "details": "Using Visual Studio Code",
-    "state": "Detected by Hammity Pulse"
+    "state": "Detected by Hammity Pulse",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Visual Studio Code"
+    }
   }
 }
