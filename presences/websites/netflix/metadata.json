@@ -1,0 +1,100 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "netflix",
+  "name": "Netflix",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Netflix viewing activity.",
+  "priority": 175,
+  "detection": {
+    "domains": [
+      "netflix.com"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "meta[name=\"twitter:title\"]",
+          "attribute": "content"
+        }
+      ],
+      "stripSuffixes": [
+        " - Netflix"
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "meta[name=\"twitter:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    },
+    "mediaSelector": "video"
+  },
+  "activity": {
+    "type": "watching",
+    "name": "Netflix",
+    "details": "Browsing Netflix",
+    "state": "Hammity Pulse Browser",
+    "showElapsed": false,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Netflix"
+    },
+    "timestampMode": "none"
+  },
+  "contexts": [
+    {
+      "id": "title-playing",
+      "description": "Watching a title on Netflix.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "playing"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Watching {browser.pageTitle}",
+        "state": "Netflix",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "media",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "title-paused",
+      "description": "Paused on a Netflix title.",
+      "when": {
+        "browserHasMedia": true,
+        "browserMediaStateEquals": "paused"
+      },
+      "activity": {
+        "type": "watching",
+        "details": "Paused {browser.pageTitle}",
+        "state": "Netflix",
+        "assets": {
+          "largeImage": "{browser.pageImage}",
+          "largeText": "{browser.pageTitle}"
+        },
+        "timestampMode": "none",
+        "showElapsed": false
+      }
+    }
+  ]
+}
