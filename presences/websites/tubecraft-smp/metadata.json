@@ -1,0 +1,714 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "tubecraft-smp",
+  "name": "TubeCraft SMP",
+  "type": "website",
+  "version": "1.0.0",
+  "description": "Rich TubeCraft SMP community website activity, ported from the existing PreMiD Presence.",
+  "priority": 190,
+  "website": "https://tubecraftsmp.com",
+  "detection": {
+    "domains": [
+      "tubecraftsmp.com"
+    ]
+  },
+  "browserExtraction": {
+    "title": {
+      "selectors": [
+        {
+          "selector": "h1"
+        },
+        {
+          "selector": "meta[property=\"og:title\"]",
+          "attribute": "content"
+        },
+        {
+          "selector": "title"
+        }
+      ],
+      "stripSuffixes": [
+        " | TubeCraft SMP",
+        " - TubeCraft SMP"
+      ]
+    },
+    "image": {
+      "rules": [
+        {
+          "selectors": [
+            {
+              "selector": "meta[property=\"og:image\"]",
+              "attribute": "content"
+            },
+            {
+              "selector": "meta[name=\"twitter:image\"]",
+              "attribute": "content"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "activity": {
+    "type": "using",
+    "name": "TubeCraft SMP",
+    "details": "Browsing TubeCraft SMP",
+    "state": "{browser.pageTitle}",
+    "showElapsed": true,
+    "timestampMode": "elapsed",
+    "assets": {
+      "icon": "logo.png",
+      "largeImage": "logo.png",
+      "largeText": "TubeCraft SMP"
+    },
+    "buttons": [
+      {
+        "label": "Open TubeCraft SMP",
+        "url": "https://tubecraftsmp.com"
+      }
+    ]
+  },
+  "contexts": [
+    {
+      "id": "admin-application-settings",
+      "description": "TubeCraft SMP: Application Settings",
+      "when": {
+        "browserPathnameIncludes": "/admin/application_settings"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Configuring Applications",
+        "state": "Application Settings",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-applications",
+      "description": "TubeCraft SMP: Application Manager",
+      "when": {
+        "browserPathnameIncludes": "/admin/applications"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reviewing Applications",
+        "state": "Application Manager",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-cdn",
+      "description": "TubeCraft SMP: CDN Configuration",
+      "when": {
+        "browserPathnameIncludes": "/admin/cdn"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing CDN Settings",
+        "state": "CDN Configuration",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-media",
+      "description": "TubeCraft SMP: Media Library",
+      "when": {
+        "browserPathnameIncludes": "/admin/media"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing CDN Media",
+        "state": "Media Library",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-inactivity-alerts",
+      "description": "TubeCraft SMP: Inactivity Alerts",
+      "when": {
+        "browserPathnameIncludes": "/admin/inactivity_alerts"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reviewing Creator Activity",
+        "state": "Inactivity Alerts",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-creators",
+      "description": "TubeCraft SMP: Creator Management",
+      "when": {
+        "browserPathnameIncludes": "/admin/creators"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Creators",
+        "state": "Creator Management",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-videos",
+      "description": "TubeCraft SMP: Video Library",
+      "when": {
+        "browserPathnameIncludes": "/admin/videos"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Videos",
+        "state": "Video Library",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-seasons",
+      "description": "TubeCraft SMP: Season Management",
+      "when": {
+        "browserPathnameIncludes": "/admin/seasons"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Seasons",
+        "state": "Season Management",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-gallery",
+      "description": "TubeCraft SMP: Community Gallery",
+      "when": {
+        "browserPathnameIncludes": "/admin/gallery"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Gallery",
+        "state": "Community Gallery",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-changelogs",
+      "description": "TubeCraft SMP: Changelog Manager",
+      "when": {
+        "browserPathnameIncludes": "/admin/changelogs"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Publishing Updates",
+        "state": "Changelog Manager",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-faq",
+      "description": "TubeCraft SMP: FAQ Manager",
+      "when": {
+        "browserPathnameIncludes": "/admin/faq"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Help Content",
+        "state": "FAQ Manager",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-logs",
+      "description": "TubeCraft SMP: Admin Logs",
+      "when": {
+        "browserPathnameIncludes": "/admin/logs"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reviewing Site Activity",
+        "state": "Admin Logs",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-admins",
+      "description": "TubeCraft SMP: Access Control",
+      "when": {
+        "browserPathnameIncludes": "/admin/admins"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Admin Accounts",
+        "state": "Access Control",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-visitors",
+      "description": "TubeCraft SMP: Visitor Analytics",
+      "when": {
+        "browserPathnameIncludes": "/admin/visitors"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing Statistics",
+        "state": "Visitor Analytics",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-settings",
+      "description": "TubeCraft SMP: Site Settings",
+      "when": {
+        "browserPathnameIncludes": "/admin/settings"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Website",
+        "state": "Site Settings",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-smtp",
+      "description": "TubeCraft SMP: SMTP Settings",
+      "when": {
+        "browserPathnameIncludes": "/admin/smtp"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing Email Delivery",
+        "state": "SMTP Settings",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-videos",
+      "description": "TubeCraft SMP: Creator Videos",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "videos"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Videos",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-gallery",
+      "description": "TubeCraft SMP: Creator Images",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "gallery"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Images",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-images",
+      "description": "TubeCraft SMP: Creator Images",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "images"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Images",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-collabs",
+      "description": "TubeCraft SMP: Creator Collaborations",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "collabs"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Collaborations",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-about",
+      "description": "TubeCraft SMP: Creator Information",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$",
+        "browserQueryParamEquals": {
+          "tab": "about"
+        }
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Information",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "account",
+      "description": "TubeCraft SMP: Account Dashboard",
+      "when": {
+        "browserPathnameIncludes": "/account"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing Personal Account",
+        "state": "Account Dashboard",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creator-profile",
+      "description": "TubeCraft SMP: Creator Profile",
+      "when": {
+        "browserPathnameRegex": "^/creator/[^/]+/?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing {browser.pageTitle}",
+        "state": "Creator Profile",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "homepage",
+      "description": "TubeCraft SMP: Homepage",
+      "when": {
+        "browserPathnameRegex": "^/(?:index\\.php)?$"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing TubeCraft SMP",
+        "state": "Homepage",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "creators",
+      "description": "TubeCraft SMP: TubeCraft SMP Community",
+      "when": {
+        "browserPathnameIncludes": "/creators"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing Creators",
+        "state": "TubeCraft SMP Community",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "videos",
+      "description": "TubeCraft SMP: TubeCraft SMP Video Library",
+      "when": {
+        "browserPathnameIncludes": "/videos"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Browsing Community Videos",
+        "state": "TubeCraft SMP Video Library",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "seasons",
+      "description": "TubeCraft SMP: TubeCraft SMP History",
+      "when": {
+        "browserPathnameIncludes": "/seasons"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Exploring Seasons",
+        "state": "TubeCraft SMP History",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "gallery",
+      "description": "TubeCraft SMP: Community Media",
+      "when": {
+        "browserPathnameIncludes": "/gallery"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing Gallery",
+        "state": "Community Media",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "faq",
+      "description": "TubeCraft SMP: Frequently Asked Questions",
+      "when": {
+        "browserPathnameIncludes": "/faq"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reading Help Information",
+        "state": "Frequently Asked Questions",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "rules",
+      "description": "TubeCraft SMP: TubeCraft SMP Guidelines",
+      "when": {
+        "browserPathnameIncludes": "/rules"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reading Community Rules",
+        "state": "TubeCraft SMP Guidelines",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "apply",
+      "description": "TubeCraft SMP: Creator Application",
+      "when": {
+        "browserPathnameIncludes": "/apply"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Viewing Applications",
+        "state": "Creator Application",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "changelogs",
+      "description": "TubeCraft SMP: TubeCraft SMP Changelogs",
+      "when": {
+        "browserPathnameIncludes": "/changelogs"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Reading Website Updates",
+        "state": "TubeCraft SMP Changelogs",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    },
+    {
+      "id": "admin-dashboard",
+      "description": "TubeCraft SMP: Admin Dashboard",
+      "when": {
+        "browserPathnameIncludes": "/admin"
+      },
+      "activity": {
+        "type": "using",
+        "details": "Managing TubeCraft SMP",
+        "state": "Admin Dashboard",
+        "assets": {
+          "icon": "logo.png",
+          "largeImage": "logo.png",
+          "largeText": "TubeCraft SMP"
+        },
+        "timestampMode": "elapsed",
+        "showElapsed": true
+      }
+    }
+  ]
+}
