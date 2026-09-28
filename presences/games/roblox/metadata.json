@@ -3,7 +3,7 @@
   "id": "roblox",
   "name": "Roblox",
   "type": "game",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rich Roblox game activity using local Roblox client activity data.",
   "priority": 260,
   "detection": {
@@ -20,7 +20,10 @@
     "name": "Roblox",
     "details": "Playing a Roblox experience",
     "state": "Loading experience details",
-    "showElapsed": true
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png"
+    }
   },
   "contexts": [
     {
