@@ -3,7 +3,7 @@
   "id": "roblox-studio",
   "name": "Roblox Studio",
   "type": "app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Roblox Studio development activity.",
   "priority": 255,
   "detection": {
@@ -18,7 +18,10 @@
     "name": "Roblox Studio",
     "details": "Developing in Roblox Studio",
     "state": "Project open",
-    "showElapsed": true
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png"
+    }
   },
   "contexts": [
     {
