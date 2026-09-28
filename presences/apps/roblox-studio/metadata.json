@@ -3,12 +3,13 @@
   "id": "roblox-studio",
   "name": "Roblox Studio",
   "type": "app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Roblox Studio development activity.",
   "priority": 255,
   "detection": {
     "processes": [
-      "RobloxStudioBeta.exe"
+      "RobloxStudioBeta.exe",
+      "RobloxStudioBeta"
     ],
     "captureWindowTitle": true
   },
