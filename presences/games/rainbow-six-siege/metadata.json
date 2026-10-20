@@ -3,8 +3,8 @@
   "id": "rainbow-six-siege",
   "name": "Rainbow Six Siege",
   "type": "game",
-  "version": "1.0.0",
-  "description": "Detects Rainbow Six Siege (including Siege X) using the running Windows game process.",
+  "version": "1.1.0",
+  "description": "Detects Rainbow Six Siege and, on supported Hammity Pulse runtimes, whether the game is the active Windows application.",
   "priority": 220,
   "detection": {
     "processes": [
@@ -23,5 +23,35 @@
       "icon": "icon.png",
       "largeText": "Rainbow Six Siege"
     }
-  }
+  },
+  "contexts": [
+    {
+      "id": "window-active",
+      "description": "OS reports that the running Siege window is the foreground application.",
+      "when": {
+        "dataEquals": {
+          "r6.foreground": true
+        }
+      },
+      "activity": {
+        "type": "playing",
+        "details": "Playing Rainbow Six Siege",
+        "state": "Game window active"
+      }
+    },
+    {
+      "id": "window-background",
+      "description": "OS reports that another window is in the foreground while Siege runs.",
+      "when": {
+        "dataEquals": {
+          "r6.background": true
+        }
+      },
+      "activity": {
+        "type": "playing",
+        "details": "Rainbow Six Siege running",
+        "state": "Game in background"
+      }
+    }
+  ]
 }
