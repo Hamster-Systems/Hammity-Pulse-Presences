@@ -3,7 +3,7 @@
   "id": "rainbow-six-siege",
   "name": "Rainbow Six Siege",
   "type": "game",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detects Rainbow Six Siege (including Siege X) using the running Windows game process.",
   "priority": 220,
   "detection": {
@@ -22,6 +22,7 @@
     "assets": {
       "icon": "icon.png",
       "largeText": "Rainbow Six Siege"
-    }
+    },
+    "timestampMode": "elapsed"
   }
 }
