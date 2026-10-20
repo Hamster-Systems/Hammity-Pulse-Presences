@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../schemas/presence.schema.json",
+  "id": "rainbow-six-siege",
+  "name": "Rainbow Six Siege",
+  "type": "game",
+  "version": "1.0.0",
+  "description": "Detects Rainbow Six Siege (including Siege X) using the running Windows game process.",
+  "priority": 220,
+  "detection": {
+    "processes": [
+      "RainbowSix.exe",
+      "RainbowSix_DX12.exe",
+      "RainbowSix_Vulkan.exe"
+    ]
+  },
+  "activity": {
+    "type": "playing",
+    "name": "Rainbow Six Siege",
+    "details": "Playing Rainbow Six Siege",
+    "state": "Game running",
+    "showElapsed": true,
+    "assets": {
+      "icon": "icon.png",
+      "largeText": "Rainbow Six Siege"
+    }
+  }
+}
